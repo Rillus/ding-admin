@@ -1,0 +1,726 @@
+body {
+	background-color: #f5f5f5;
+	padding-top:50px;
+}
+
+header.masthead h2{
+	float:left;
+}
+header.masthead p{
+	float:right;
+	margin-top: 20px;
+}
+.form-signin {
+	max-width: 300px;
+	padding: 19px 29px 29px;
+	margin: 0 auto 20px;
+	background-color: #fff;
+	border: 1px solid #e5e5e5;
+	-webkit-border-radius: 5px;
+	   -moz-border-radius: 5px;
+			border-radius: 5px;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+	   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+			box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+.form-signin h2,
+.form-signin .checkbox {
+	margin: 0 0 10px;
+}
+.form-signin input[type="text"],
+.form-signin input[type="password"] {
+	font-size: 16px;
+	height: auto;
+	margin-bottom: 15px;
+	padding: 7px 9px;
+}
+.lastCol form, .widget  form{
+	display:inline-block;
+	margin-left:5px;
+	margin-bottom:0;
+}
+.page-header {
+	margin:0;
+	padding:0;
+	border:none;
+}
+ /* Customize the navbar links to be fill the entire space of the .navbar */
+.navbar {
+	clear:both;
+}
+.navbar .navbar-inner {
+	padding: 0;
+}
+.navbar .nav {
+	margin: 0;
+	display: table;
+	width: 100%;
+}
+.navbar .nav li {
+	display: table-cell;
+	width: 1%;
+	float: none;
+}
+.navbar .nav li a {
+	font-weight: bold;
+	text-align: center;
+	border-left: 1px solid rgba(255,255,255,.75);
+	border-right: 1px solid rgba(0,0,0,.1);
+}
+.navbar .nav li:first-child a {
+	border-left: 0;
+	border-radius: 3px 0 0 3px;
+}
+.navbar .nav li:last-child a {
+	border-right: 0;
+	border-radius: 0 3px 3px 0;
+}
+.navbar.navbar-inverse {
+	clear:both;
+}
+.navbar.navbar-inverse .navbar-inner {
+	padding: 0;
+}
+.navbar.navbar-inverse .nav {
+	margin: 0;
+	width: auto;
+}
+.navbar.navbar-inverse .nav li {
+	display:block;
+	width:auto;
+	float: left;
+}
+.navbar.navbar-inverse .nav li a {
+	font-weight: normal;
+	text-align: left;
+	border-left: 0;
+	border-right: 0;
+}
+.navbar.navbar-inverse .nav.login li a {
+	display:inline-block;
+	padding:inherit 0;
+}
+.navbar.navbar-inverse .nav li:first-child a {
+	border-left: 0;
+	border-radius: 0;
+}
+.navbar.navbar-inverse .nav li:last-child a {
+	border-right: 0;
+	border-radius: 0;
+}
+.navbar-fixed-top .container {
+	width:100%;
+}
+/* Homepage/Dashboard */
+#home .widget {
+	border:1px solid #ccc;
+	border-radius:10px 10px 0 0;
+	width:45%;
+	float:left;
+	margin-right:2%;
+	overflow-x:scroll;
+}
+#home #recipe.widget {
+	min-height:220px;
+	padding:0 2%;
+}
+/* drag & drop boxes css */
+/* Colors */
+.color-grey  {background:#8c8d8e;}
+.color-lime  {background:#bed600;}
+.color-green  {background:#0f9f56;}
+.color-blue   {background:#00b1cb;}
+.color-purple  {background:#a422bb;}
+.color-pink  {background:#ee096a;}
+.color-red    {background:#f31717;}
+.color-orange {background:#ff9600;}
+.color-yellow h3,
+.color-grey h3,
+.color-green h3
+	{color:#000;}
+.color-red h3,
+.color-blue h3,
+.color-orange h3
+	{color:#FFF;}
+/* End Colors */
+
+/* Columns section */
+.table .colWidth {
+	text-align:center;
+	padding-left:0;
+	padding-right:0;
+}
+#columns ul {
+	margin:0;
+}
+#columns li {
+	list-style:none;
+	min-height:30px;
+}
+#columns .column {
+    float: left;
+    width: 33.3%;
+		/* Min-height: */
+		min-height: 400px;
+		height: auto !important; 
+		height: 400px;
+}
+
+/* Column dividers (background-images) : */
+	#columns #column1 { }
+	#columns #column3 { }
+	
+#columns #column1 .widget { margin: 5px; }
+#columns #column3 .widget { margin: 5px; }
+#columns .widget {
+    margin: 5px;
+    padding: 2px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+#columns .widget .widget-head {
+    color: #000;
+    overflow: hidden;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+}
+#columns .widget .widget-head h3 {
+    padding: 0 5px;
+    float: left;
+	margin:0;
+	font-size:0.7em;
+	line-height:30px;
+	max-width: 72%;
+}
+#columns .widget .widget-content {
+    background: #333 url(../js/img/widget-content-bg.png) repeat-x;
+    padding: 0;
+    color: #DDD;
+    -moz-border-radius-bottomleft: 2px;
+    -moz-border-radius-bottomright: 2px;
+    -webkit-border-bottom-left-radius: 2px;
+    -webkit-border-bottom-right-radius: 2px;
+    line-height: 0;
+    overflow: hidden;
+	
+}
+#columns .widget .widget-content p {
+    line-height: 1.2em;
+    padding: 7px;
+	margin:0;
+    border-bottom: 1px solid #666;
+}
+#columns .widget .widget-content img {
+    float: right;
+    margin: 10px;
+    border: 1px solid #FFF;
+}
+#columns .widget .widget-content pre {
+    padding: 0.5em 5px;
+    color: #EEE;
+    font-size: 12px;
+}
+#columns .widget .widget-content ul {
+    padding: 5px 0 5px 20px;
+    list-style: disc;
+}
+#columns .widget .widget-content ul li {padding: 3px 0;}
+#columns .widget .widget-content ul.images {
+    padding: 7px 0 0 0;
+    list-style: none;
+    height: 1%;
+}
+#columns .widget .widget-content ul.images li {
+    display: inline;
+    float: left;
+}
+#columns .widget .widget-content ul.images img {
+    display: inline;
+    float: left;
+    margin: 0 0 7px 7px;
+}
+/* End Columns section */
+table td.lastCol, table th.lastCol, .lastCol h5 {
+	text-align:right;
+}
+
+/* sortable tables */
+table.sort thead th, .hider {
+	cursor:pointer;
+}
+table.sort thead th .icon, .hider, .ui-icon{
+	display: inline-block;
+	float:right;
+	width: 14px;
+	height: 14px;
+	margin-top: 1px;
+	*margin-right: .3em;
+	line-height: 14px;
+	vertical-align: text-top;
+	background-image: url("../img/glyphicons-halflings.png");
+	background-position: -432px -119px;
+	background-repeat: no-repeat;
+}
+table.sort thead th.headerSortUp .icon, .icon-chevron-up, .hider.icon-chevron-up {
+  background-position: -288px -120px;
+}
+
+table.sort thead th.headerSortDown .icon, .icon-chevron-down, .hider.icon-chevron-down {
+  background-position: -313px -119px;
+}
+.ui-icon-circle-triangle-e {
+	background-position: -456px -72px;
+}
+.ui-icon-circle-triangle-w {
+	background-position: -432px -72px;
+}
+.controls-row .icon-remove.deleter {
+	margin:6px 0 6px 20px;
+	cursor:pointer;
+	float:left;
+}
+.help-inline {
+	margin-left:0;
+}
+table tr.header .lastCol .icon, table tr.header .lastCol .checkbox  {
+	float:left;
+	margin-right:10px;
+}
+table.checklist tbody * {
+	transition: all 0.3s;
+	-webkit-transition: all 0.3s; /* Safari */
+}
+/* rotating the loading image */
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to { 
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to { 
+    -webkit-transform: rotate(360deg);
+  }
+}
+#contain .icon-refresh {
+	margin:auto;
+	display:block;
+    animation-name:             rotate; 
+    animation-duration:         0.5s; 
+    animation-iteration-count:  infinite;
+    transition-timing-function: linear;
+	-webkit-animation-name:             rotate; 
+    -webkit-animation-duration:         0.5s; 
+    -webkit-animation-iteration-count:  infinite;
+    -webkit-transition-timing-function: linear;
+}
+/* large buttons for recipes */
+
+.large-button {
+	background-color: #fafafa;
+	background-image: -moz-linear-gradient(top,#fff,#f2f2f2);
+	background-image: -webkit-gradient(linear,0 0,0 100%,from(#fff),to(#f2f2f2));
+	background-image: -webkit-linear-gradient(top,#fff,#f2f2f2);
+	background-image: -o-linear-gradient(top,#fff,#f2f2f2);
+	background-image: linear-gradient(to bottom,#fff,#f2f2f2);
+	background-repeat: repeat-x;
+	border: 1px solid #d4d4d4;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff',endColorstr='#fff2f2f2',GradientType=0);
+	-webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+	-moz-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+	box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+	padding-top:5px;
+	width:120px;
+	height:115px;
+	margin:10px 19px 10px 0;
+	border-radius:5px;
+	display:block;
+	float:left;
+	text-align:center;
+}
+.large-button span{
+	background-repeat:no-repeat;
+	background-position:10px -7px;
+	width:120px;
+	height:100px;
+	display:block;
+}
+.large-button.checklist span, .large-button.subtask span{
+	background-image:url(../img/checklist.png);
+}
+.large-button.taskboard span{
+	background-image:url(../img/taskboard.png);
+}
+.large-button.table span{
+	background-image:url(../img/table.png);
+}
+.large-button.project span{
+	background-image:url(../img/project.png);
+}
+.large-button.userstory span{
+	background-image:url(../img/userstory.png);
+}
+.large-button.new span{
+	background-image:url(../img/new.png);
+}
+.controls-row.new-field {
+	height:40px;
+	clear: left;
+}
+/* jQuery UI date picker */
+.ui-icon {
+	display: block;
+	text-indent: -99999px;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	cursor:pointer;
+}
+.ui-datepicker {
+	width: 17em;
+	padding: .2em .2em 0 .2em;
+	display: none;
+	background:white;
+	border:1px solid #ccc;
+	font-size: 12px;
+}
+.ui-datepicker .ui-state-default {
+	border:1px solid #ccc;
+}
+.ui-datepicker .ui-state-highlight {
+	border:1px solid #ff0000;
+}
+.ui-datepicker .ui-state-active {
+	border:1px solid #08c;
+}
+.ui-datepicker .ui-datepicker-header, .ui-slider-horizontal {
+	position: relative;
+	padding: .2em 0;
+	border-radius:20px;
+	background:#e5e5e5;
+	-webkit-box-shadow: inset 0 3px 8px rgba(0,0,0,0.125);
+	-moz-box-shadow: inset 0 3px 8px rgba(0,0,0,0.125);
+	box-shadow: inset 0 3px 8px rgba(0,0,0,0.125);
+}
+.ui-slider-horizontal {
+	border-radius:5px;
+	height:5px;
+}
+.ui-datepicker .ui-datepicker-prev,
+.ui-datepicker .ui-datepicker-next {
+	position: absolute;
+	top: 2px;
+	width: 1.8em;
+	height: 1.8em;
+}
+.ui-datepicker .ui-datepicker-prev-hover,
+.ui-datepicker .ui-datepicker-next-hover {
+	top: 1px;
+}
+.ui-datepicker .ui-datepicker-prev {
+	left: 2px;
+}
+.ui-datepicker .ui-datepicker-next {
+	right: 2px;
+}
+.ui-datepicker .ui-datepicker-prev-hover {
+	left: 1px;
+}
+.ui-datepicker .ui-datepicker-next-hover {
+	right: 1px;
+}
+.ui-datepicker .ui-datepicker-prev span,
+.ui-datepicker .ui-datepicker-next span {
+	display: block;
+	position: absolute;
+	left: 50%;
+	margin-left: -8px;
+	top: 50%;
+	margin-top: -8px;
+}
+.ui-datepicker .ui-datepicker-title {
+	margin: 0 2.3em;
+	line-height: 1.8em;
+	text-align: center;
+}
+.ui-datepicker .ui-datepicker-title select {
+	font-size: 1em;
+	margin: 1px 0;
+}
+.ui-datepicker select.ui-datepicker-month-year {
+	width: 100%;
+}
+.ui-datepicker select.ui-datepicker-month,
+.ui-datepicker select.ui-datepicker-year {
+	width: 49%;
+}
+.ui-datepicker table {
+	width: 100%;
+	font-size: .9em;
+	border-collapse: collapse;
+	margin: 0 0 .4em;
+}
+.ui-datepicker th {
+	padding: .7em .3em;
+	text-align: center;
+	font-weight: bold;
+	border: 0;
+}
+.ui-datepicker td {
+	border: 0;
+	padding: 1px;
+}
+.ui-datepicker td span,
+.ui-datepicker td a {
+	display: block;
+	padding: .2em;
+	text-align: right;
+	text-decoration: none;
+}
+.ui-datepicker .ui-datepicker-buttonpane {
+	background-image: none;
+	margin: .7em 0 0 0;
+	padding: 0 .2em;
+	border-left: 0;
+	border-right: 0;
+	border-bottom: 0;
+}
+.ui-datepicker .ui-datepicker-buttonpane button {
+	float: right;
+	margin: .5em .2em .4em;
+	cursor: pointer;
+	padding: .2em .6em .3em .6em;
+	width: auto;
+	overflow: visible;
+}
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {
+	float: left;
+}
+
+/* with multiple calendars */
+.ui-datepicker.ui-datepicker-multi {
+	width: auto;
+}
+.ui-datepicker-multi .ui-datepicker-group {
+	float: left;
+}
+.ui-datepicker-multi .ui-datepicker-group table {
+	width: 95%;
+	margin: 0 auto .4em;
+}
+.ui-datepicker-multi-2 .ui-datepicker-group {
+	width: 50%;
+}
+.ui-datepicker-multi-3 .ui-datepicker-group {
+	width: 33.3%;
+}
+.ui-datepicker-multi-4 .ui-datepicker-group {
+	width: 25%;
+}
+.ui-datepicker-multi .ui-datepicker-group-last .ui-datepicker-header,
+.ui-datepicker-multi .ui-datepicker-group-middle .ui-datepicker-header {
+	border-left-width: 0;
+}
+.ui-datepicker-multi .ui-datepicker-buttonpane {
+	clear: left;
+}
+.ui-datepicker-row-break {
+	clear: both;
+	width: 100%;
+	font-size: 0;
+}
+
+/* RTL support */
+.ui-datepicker-rtl {
+	direction: rtl;
+}
+.ui-datepicker-rtl .ui-datepicker-prev {
+	right: 2px;
+	left: auto;
+}
+.ui-datepicker-rtl .ui-datepicker-next {
+	left: 2px;
+	right: auto;
+}
+.ui-datepicker-rtl .ui-datepicker-prev:hover {
+	right: 1px;
+	left: auto;
+}
+.ui-datepicker-rtl .ui-datepicker-next:hover {
+	left: 1px;
+	right: auto;
+}
+.ui-datepicker-rtl .ui-datepicker-buttonpane {
+	clear: right;
+}
+.ui-datepicker-rtl .ui-datepicker-buttonpane button {
+	float: left;
+}
+.ui-datepicker-rtl .ui-datepicker-buttonpane button.ui-datepicker-current,
+.ui-datepicker-rtl .ui-datepicker-group {
+	float: right;
+}
+.ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-header,
+.ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header {
+	border-right-width: 0;
+	border-left-width: 1px;
+}
+/* ui slider */
+.ui-slider {
+	position: relative;
+	text-align: left;
+}
+.ui-slider .ui-slider-handle {
+	position: absolute;
+	z-index: 2;
+	width: 1.2em;
+	height: 1.2em;
+	cursor: default;
+	background-color: #f5f5f5;
+  *background-color: #e6e6e6;
+  background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+  background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+  background-repeat: repeat-x;
+  border: 1px solid #cccccc;
+  *border: 0;
+  border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  border-bottom-color: #b3b3b3;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  *zoom: 1;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.ui-slider .ui-slider-range {
+	position: absolute;
+	z-index: 1;
+	font-size: .7em;
+	display: block;
+	border: 0;
+	background-position: 0 0;
+}
+
+/* For IE8 - See #6727 */
+.ui-slider.ui-state-disabled .ui-slider-handle,
+.ui-slider.ui-state-disabled .ui-slider-range {
+	filter: inherit;
+}
+.ui-slider-horizontal .ui-slider-handle {
+	top: -.3em;
+	margin-left: -.6em;
+}
+.ui-slider-horizontal .ui-slider-range {
+	top: 0;
+	height: 100%;
+}
+.ui-slider-horizontal .ui-slider-range-min {
+	left: 0;
+}
+.ui-slider-horizontal .ui-slider-range-max {
+	right: 0;
+}
+
+.ui-slider-vertical {
+	width: .8em;
+	height: 100px;
+}
+.ui-slider-vertical .ui-slider-handle {
+	left: -.3em;
+	margin-left: 0;
+	margin-bottom: -.6em;
+}
+.ui-slider-vertical .ui-slider-range {
+	left: 0;
+	width: 100%;
+}
+.ui-slider-vertical .ui-slider-range-min {
+	bottom: 0;
+}
+.ui-slider-vertical .ui-slider-range-max {
+	top: 0;
+}
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+.ui-timepicker-rtl{ direction: rtl; }
+.ui-timepicker-rtl dl { text-align: right; }
+.ui-timepicker-rtl dl dd { margin: 0 65px 10px 10px; }
+
+/* responsive stuff */
+nav.navbar .brand {
+	display:none;
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+	nav .nav li a {
+		vertical-align:middle;
+	}
+	nav.navbar-inverse li a {
+		height:auto;
+	}
+}
+@media (max-width: 797px) {
+	nav .nav li a {
+	}
+	nav.navbar-inverse .nav.login li a.name {
+		display:none;
+	}
+	.navbar.navbar-inverse .nav {
+		margin-left:20px;
+	}
+	.navbar.navbar-inverse .nav.login {
+		margin-right:20px;
+		margin-left:0px;
+	}
+}
+@media (max-width: 540px) {
+	nav.navbar .brand {
+		display:block;
+	}
+	nav.navbar .nav li {
+		float:none;
+		display:block;
+		width:auto;
+	}
+	nav.navbar .nav li a{
+		padding:0;
+		border-radius:0;
+		line-height:30px;
+	}
+	.navbar.navbar-inverse .nav li {
+		float:none;
+	}
+	.navbar.navbar-inverse .nav.login {
+		margin-right:20px;
+		margin-left:20px;
+	}
+	body {
+		padding-top:0px;
+	}
+}
+@media (max-width: 480px) {
+	body {
+		padding-top:0;
+	}
+}
