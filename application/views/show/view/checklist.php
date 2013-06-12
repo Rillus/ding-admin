@@ -5,9 +5,7 @@
 				<h3><?php echo $view->name; ?> <small><?php echo $view->description; ?></small></h3>
 			</div>
 		</th>
-		<?php if ($this->Permission->level("nodes:create")){ ?>
-			<th class="lastCol"><a href="<?php echo site_url("add/node/".$contentType->id) ?>">Add list item</th>
-		<?php } ?>
+		<th class="lastCol"><?php echo $this->Viewmodel->addRedirect("add/node/".$contentType->id, "Add list item", "nodes:create"); ?></th>
 	</tr>
 </table>
 
@@ -70,12 +68,11 @@
 				} ?>
 
 				<td class="lastCol">
-					<?php if ($this->Permission->level("nodes:edit all, nodes:edit own")){
-						$this->Viewmodel->addRedirect(site_url('add/node_edit/'.$node->id), "Edit");
-					}
-					if ($this->Permission->level("nodes:delete all, nodes:delete own")){
-						$this->Viewmodel->addRedirect(site_url('delete/node/'.$node->id), "Delete");
-					} ?>
+					<?php
+					echo $this->Viewmodel->addRedirect('node/'.$node->safe_title, "Link", "nodes:view all, nodes:view own"); 
+					echo $this->Viewmodel->addRedirect('add/node_edit/'.$node->id, "Edit", "nodes:edit all, nodes:edit own");
+					echo $this->Viewmodel->addRedirect('delete/node/'.$node->id, "Delete", "nodes:delete all, nodes:delete own");
+					?>
 				</td>
 			</tr>
 		<?php

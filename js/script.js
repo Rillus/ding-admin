@@ -49,17 +49,21 @@ $(document).ready(function(){
 	$(document).on("click", "#add-button", function(e){
 		e.preventDefault();
 		jVal.addRow($(this));
-
-		if ($("#dropdown-select").length > 0){
-			contentType.replaceNodeField();
-		}
 	});
 	
 	/* ------- Add view page ------ */
 	var viewType = {
 		'addView' : function(result) {
 			$("#results").empty();
-			if (viewVal == "1"){ //Page
+			if (viewVal == "2"){ // taskboard
+				//$("#resultHolder").prev().append("<h3>Add categories to drag between</h3>");
+				thisTemplate = $("#dragbox-template").html();
+				$("#results").append(thisTemplate);
+
+				if ($("#add-button").length == 0){
+					$("#resultHolder").after($("#addButton-template").html());
+				}
+			} else {
 				thisTemplate = $("#table-template").html();
 				$("#results").prepend("<h3>Select fields to show</h3>");
 
@@ -70,16 +74,6 @@ $(document).ready(function(){
 						$("#add-button").remove();
 					}
 				}
-			} else if (viewVal == "2"){ // taskboard
-				//$("#resultHolder").prev().append("<h3>Add categories to drag between</h3>");
-				thisTemplate = $("#dragbox-template").html();
-				$("#results").append(thisTemplate);
-
-				if ($("#add-button").length == 0){
-					$("#resultHolder").after($("#addButton-template").html());
-				}
-			} else {
-				thisTemplate = "";
 			}
 		}
 	};
@@ -180,20 +174,18 @@ $(document).ready(function(){
 	
 	/* ------- Add Content Type page ------ */
 	var contentType = {
-		'replaceNodeField' : function() {
-			var typeField = $("[name='fieldType[]']"),
-				descField = $("[name='fieldDescription[]']");
-			if (descField.val() == ""){
-				typeField.find("option:selected[value=8]").parents(".controls-row").find(descField).replaceWith($("#dropdown-select").html());
-				typeField.find("option:selected[value!=8]").parents(".controls-row").find(descField).replaceWith($("#description-field").html());
-			} else {
-				// what do we do if the value is already populated?!
-			}
+		'replaceNodeField' : function(me) {
+			var descField = $("[name='fieldDescription[]']"),
+				selectedDescField = me.find("option:selected[value=8]").parents(".controls-row").find(descField),
+				unSelectedDescField = me.find("option:selected[value!=8]").parents(".controls-row").find(descField);
+
+			selectedDescField.replaceWith($("#dropdown-select").html());
+			unSelectedDescField.replaceWith($("#description-field").html());
 		},
 		'nodeReference' : function() {
 			var contentType = this;
 			$(document).on("change", "[name='fieldType[]']", function(e){
-				contentType.replaceNodeField();
+				contentType.replaceNodeField($(this));
 			});
 		}
 	};
@@ -205,7 +197,6 @@ $(document).ready(function(){
 		});
 	}
 	if ($("#dropdown-select").length > 0){
-		contentType.replaceNodeField();
 		contentType.nodeReference();
 	}
 	

@@ -4,7 +4,7 @@
 	$viewSettings = unserialize($view->settings); ?>
 <style>
 #columns .colWidth, .table .colWidth {
-	width:<?php echo (100/count($viewFields)); ?>%
+	width:<?php echo $width; ?>%
 }
 </style>
 <link href="<?php echo base_url() ?>css/taskboard.js.css" rel="stylesheet" media="all">
@@ -15,11 +15,9 @@
 				<h3><?php echo $view->name; ?> <small><?php echo $view->description; ?></small></h3>
 			</div>
 		</th>
-		<?php if ($this->Permission->level("nodes:create")){ ?>
 			<th class="lastCol">
-				<?php $this->Viewmodel->addRedirect(site_url("add/node/".$contentType->id), "Add new card"); ?>
+				<?php echo $this->Viewmodel->addRedirect("add/node/".$contentType->id, "Add new card", "nodes:create"); ?>
 			</th>
-		<?php } ?>
 	</tr>
 </table>
 <table class="table">
@@ -65,16 +63,11 @@
 							$contentFieldsCount = count($contentFields['type']);
 							for ($j = 0; $j < $contentFieldsCount; $j++){ 
 								echo '<p>'.$contentFields['name'][$j].': '.$nodeContent[$contentFields['safe_name'][$j]].'</p>'; ?>
-							<?php } ?>
-							<?php if ($this->Permission->level("nodes:view all, nodes:view own")){
-								$this->Viewmodel->addRedirect(site_url('node/'.$thisWidget->safe_title), "Link"); 
-							}
-							if ($this->Permission->level("nodes:edit all, nodes:edit own")){
-								$this->Viewmodel->addRedirect(site_url('add/node_edit/'.$thisWidget->id), "Edit");
-							}
-							if ($this->Permission->level("nodes:delete all, nodes:delete own")){
-								$this->Viewmodel->addRedirect(site_url('delete/node/'.$thisWidget->id), "Delete");
-							} ?>
+							<?php } 
+							echo $this->Viewmodel->addRedirect('node/'.$thisWidget->safe_title, "Link", "nodes:view all, nodes:view own"); 
+							echo $this->Viewmodel->addRedirect('add/node_edit/'.$thisWidget->id, "Edit", "nodes:edit all, nodes:edit own");
+							echo $this->Viewmodel->addRedirect('delete/node/'.$thisWidget->id, "Delete", "nodes:delete all, nodes:delete own");
+							?>
 						</div>
 					</li>
 				<?php 
@@ -84,7 +77,3 @@
 	<?php
 	} ?>
 </div>
-<script src="http://code.jquery.com/jquery.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-ui.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/touchpunch.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/taskboard.js"></script>

@@ -9,7 +9,7 @@ class Add extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="alert alert-error">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>', '</div>');
+  <button type="button" class="close" data-dismiss="alert" tabindex="-1">&times;</button>', '</div>');
 		
 		$this->load->database();
 		$this->load->library('session');
@@ -230,6 +230,15 @@ class Add extends CI_Controller {
 			
 			//print_r($content);
 			$content = serialize($content);
+			
+			$this->db->like('safe_title', $safeTitle);
+			$this->db->order_by('safe_title', 'desc');
+			$nodes = $this->db->get('node', 1);
+			if ($nodes->num_rows() > 0){
+				$node = $nodes->row();
+				$this->load->helper('string');
+				$safeTitle = increment_string($node->safe_title, '_');
+			}
 			
 			$data = array (
 				'title' => $title,

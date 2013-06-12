@@ -19,6 +19,10 @@ class Users extends CI_Controller {
 		
 		$this->load->model('Dbmodel');
 		$this->load->model('Viewmodel');
+		
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div class="alert alert-error">
+  <button type="button" class="close" data-dismiss="alert" tabindex="-1">&times;</button>', '</div>');
 	}
 
 	function index()
@@ -44,9 +48,7 @@ class Users extends CI_Controller {
 	}
 	function add() {
 		$this->Permission->level("users:create", false);
-		
-		$this->load->library('form_validation');
-				
+						
 		$this->form_validation->set_rules('forename', 'forename', 'trim|required');
 		$this->form_validation->set_rules('surname', 'surname', 'trim|required');
 		$this->form_validation->set_rules('username', 'email', 'required|valid_email|callback_preregistered_check');
@@ -100,8 +102,6 @@ class Users extends CI_Controller {
 		if ((! $this->Permission->level("users:edit all")) && ($id != $this->session->userdata('id'))){
 			redirect('users/edit/'.$this->session->userdata('id'));
 		}
-		
-		$this->load->library('form_validation');
 				
 		$this->form_validation->set_rules('forename', 'forename', 'trim|required');
 		$this->form_validation->set_rules('surname', 'surname', 'trim|required');

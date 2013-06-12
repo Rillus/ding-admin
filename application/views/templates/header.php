@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+	<meta charset="UTF-8">
     <title>Status</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="<?php echo base_url() ?>css/bootstrap.css" rel="stylesheet" media="all">
@@ -19,6 +20,9 @@
 	if ($this->uri->segment(2) != ""){
 		echo 'class="'.$this->uri->segment(2).'" ';
 	} ?>>
+	
+	<?php $this->load->view('templates/analytics'); ?>
+	
 	<div class="container">
 		<header class="masthead">
 			<?php $this->load->view('templates/admin-nav'); ?>

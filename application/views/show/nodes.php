@@ -49,12 +49,9 @@ foreach ($nodes->result() as $node){
 		<?php } ?>
 		<td class="lastCol">
 			<?php 
-			if ($this->Permission->level("nodes:edit all, nodes:edit own")){
-				$this->Viewmodel->addRedirect(site_url('add/node_edit/'.$node->id), "Edit");
-			}
-			if ($this->Permission->level("nodes:delete all, nodes:delete own")){
-				$this->Viewmodel->addRedirect(site_url('delete/node/'.$node->id), "Delete");
-			} ?>
+			echo $this->Viewmodel->addRedirect('add/node_edit/'.$node->id, "Edit", "nodes:edit all, nodes:edit own");
+			echo $this->Viewmodel->addRedirect('delete/node/'.$node->id, "Delete", "nodes:delete all, nodes:delete own");
+			?>
 		</td>
 	</tr>
 <?php } ?>

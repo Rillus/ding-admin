@@ -19,13 +19,21 @@ class Viewmodel extends CI_Model {
 			$this->load->view('templates/footer');
 		}
 	}
-	function displayPage($view, $data = ""){
-		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')) {
-			$this->load->view($view, $data);
+	function displayPage($view, $data = "", $parser = false){
+		if ($parser == false){
+			if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')) {
+				$this->load->view($view, $data);
+			} else {
+				$this->load->view('templates/header');
+				$this->load->view($view, $data);
+				$this->load->view('templates/footer', $data);
+			}
 		} else {
+			$this->load->library('parser');
+			
 			$this->load->view('templates/header');
-			$this->load->view($view, $data);
-			$this->load->view('templates/footer');
+			$this->parser->parse($view, $data);
+			$this->load->view('templates/footer', $data);
 		}
 	}
 	function redirect(){
@@ -36,12 +44,20 @@ class Viewmodel extends CI_Model {
 			redirect($url);
 		}
 	}
-	function addRedirect($url, $title){
-		echo "<form action='$url' method='POST'>";
-		echo '<input type="hidden" name="redirect" value="'.current_url().'" />';
-		echo '<input type="hidden" name="fromForm" value="1" />';
-		echo '<input type="submit" value="'.$title.'" />';
-		echo '</form>';
+	function addRedirect($url, $title, $permissions = false){
+		if ($permissions != false){
+			if (! $this->Permission->level($permissions)){
+				return "";
+			}
+		}
+		$url = site_url($url); 
+		$form = "<form action='$url' method='POST'>";
+		$form .= '<input type="hidden" name="redirect" value="'.current_url().'" />';
+		$form .= '<input type="hidden" name="fromForm" value="1" />';
+		$form .='<input type="submit" value="'.$title.'" />';
+		$form .= '</form>';
+		
+		return $form;
 	}
 }
 ?>

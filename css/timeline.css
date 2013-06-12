@@ -1,0 +1,110 @@
+#timeline article {
+	float:left;
+	padding:10px 2%;
+	border:2px solid #ccc;
+	position:relative;
+	min-height:125px;
+	margin-top:20px;
+	box-shadow:-2px 2px 5px 0 #ccc;
+	background: #f0f0f0; /* Old browsers */
+	background: -moz-linear-gradient(left,  #f0f0f0 0%, #ffffff 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#f0f0f0), color-stop(100%,#ffffff)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left,  #f0f0f0 0%,#ffffff 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left,  #f0f0f0 0%,#ffffff 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left,  #f0f0f0 0%,#ffffff 100%); /* IE10+ */
+	background: linear-gradient(to right,  #f0f0f0 0%,#ffffff 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 */
+	text-align:right;
+	border-radius:10px 0 10px 10px;
+}
+#timeline article img {
+	max-height:350px;
+}
+#timeline article h5, #timeline article h3 {
+	margin:0;
+}
+#timeline article:nth-child(even) {
+	width:42%;
+	float:right;
+	clear:right;
+	margin-top:60px;
+	box-shadow:2px 2px 5px 0 #ccc;
+	background: #ffffff; /* Old browsers */
+	background: -moz-linear-gradient(left,  #ffffff 0%, #f0f0f0 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ffffff), color-stop(100%,#f0f0f0)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left,  #ffffff 0%,#f0f0f0 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left,  #ffffff 0%,#f0f0f0 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left,  #ffffff 0%,#f0f0f0 100%); /* IE10+ */
+	background: linear-gradient(to right,  #ffffff 0%,#f0f0f0 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f0f0f0',GradientType=1 ); /* IE6-9 */
+	text-align:left;
+	border-radius:0 10px 10px 10px;
+}
+#timeline article:nth-child(odd) {
+	width:42%;
+	float:left;
+	clear:left;
+}
+#timeline article .tools{
+	clear:both;
+	text-align:left;
+	width:100%;
+	margin-top:10px;
+}
+#timeline article:nth-child(even) .tools{
+	text-align:right;
+}
+#timeline article form{
+	display:inline-block;
+	margin:0;
+}
+#timeline article > div{
+	position:relative;
+	z-index:1;
+}
+#timeline article span{
+	transform:rotate(45deg);
+	-ms-transform:rotate(45deg); /* IE 9 */
+	-moz-transform:rotate(45deg); /* Safari and Chrome */
+	-webkit-transform:rotate(45deg); /* Safari and Chrome */
+	border:2px solid #ccc;
+	border-width:2px 2px 0 0;
+	position:absolute;
+	width:50px;
+	height:50px;
+	display:block;
+	top:9px;
+	right:-27px;
+	z-index:0;
+	background: #fff;
+}
+#timeline article:nth-child(even) span {
+	border-width:0 0 2px 2px;
+	top:9px;
+	left:-27px;
+}
+#timeline article .tweet .user {
+	float:left;
+}
+#timeline article:nth-child(even) .tweet .user {
+	float:right;
+}
+#timeline article .tweet .user p {
+	padding-top:10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+#timeline article .tweet .user p, #timeline article .tweet .user img{
+	float:left;
+	display:block;
+}
+#timeline article:nth-child(even) .tweet .user p, #timeline article:nth-child(even) .tweet .user img{
+	float:right;
+}
+#timeline #posts {
+	width:100%;
+	background:url("../img/divider.gif") repeat-y center;
+}
+.cleft {
+	clear:left;
+}

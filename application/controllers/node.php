@@ -43,10 +43,27 @@ class Node extends CI_Controller {
 		
 		$contentType = $this->Dbmodel->getContentTypeById($node->content_type);
 		
-		$data['node'] = $node;
-		$data['contentType'] = $contentType;
+		$data['contentType'] = get_object_vars($contentType);
+		$field_arr = unserialize($contentType->fields);
+		$content_arr = unserialize($node->content);
+		for ($i = 0; $i < count($field_arr['type']); $i++){ 
+			$type = $field_arr['type'][$i];
+			$content[$i]['field_name'] = $field_arr['name'][$i];
+			if ($type == 11){
+				$content[$i]['value'] = '<img src="'.base_url().'uploads/'.$node->created_by.'/'.$content_arr[$field_arr['safe_name'][$i]].'" alt="" />';
+			} else {
+				$content[$i]['value'] = $content_arr[$field_arr['safe_name'][$i]];
+			}
+		 }
+			 
+		$data = array(
+		  'title'   => $node->title,
+		  'created' => $this->Datemodel->formatDate($node->create_date),
+		  'content_type' => $contentType->name,
+		  'content' => $content
+		);
 		
-		$this->Viewmodel->displayPage('show/view/page', $data);
+		$this->Viewmodel->displayPage('show/view/page', $data, true);
 	}
 }
 ?>

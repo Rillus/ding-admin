@@ -2,12 +2,10 @@
 	<tr>
 		<th>
 			<div class="page-header">
-				<h3><?php echo $view->name; ?> <small><?php echo $view->description; ?></small></h3>
+				<h3>{view_title} <small>{view_description}</small></h3>
 			</div>
 		</th>
-		<?php if ($this->Permission->level("nodes:create")){ ?>
-			<th class="lastCol"><a href="<?php echo site_url("add/node/".$contentType->id) ?>">Add new row</th>
-		<?php } ?>
+		<th class="lastCol">{add_new_row_button}</th>
 	</tr>
 </table>
 
@@ -15,55 +13,26 @@
 	<thead>
 		<tr>
 			<th>Name</th>
-			<?php
-			$viewFields = unserialize($view->fields);
-			$contentFields = unserialize($contentType->fields);
-			for ($i = 0; $i < count($contentFields['type']); $i++){ 
-				if (isset($viewFields[$contentFields['safe_name'][$i]])){
-					if ($viewFields[$contentFields['safe_name'][$i]] == "on"){?>
-					<th>
-						<?php echo $contentFields['name'][$i]; ?>
-					</th>
-					<?php
-					}
-				}
-			} ?>
-			
+			{fields}
+				<th>{field_name}</th>
+			{/fields}
 			<th class="lastCol">Actions</th>
 		</tr>
 	</thead>
 	<tbody>
-		<?php
-		foreach ($nodes->result() as $node){ ?>
+		{content}
 		<tr>
-			<td><?php echo $node->title; ?></td>
-			<?php
-			$nodeContent = unserialize($node->content);
-			for ($i = 0; $i < count($contentFields['type']); $i++){
-				if (isset($viewFields[$contentFields['safe_name'][$i]])){
-					if ($viewFields[$contentFields['safe_name'][$i]] == "on"){ ?>
-						<td>
-							<?php echo $nodeContent[$contentFields['safe_name'][$i]]; ?>
-						</td>
-					<?php 
-					}
-				}
-			} ?>
-
+			<td>{title}</td>
+			{values}
+				<td>{value}</td>
+			{/values}
 			<td class="lastCol">
-				<?php if ($this->Permission->level("nodes:view all, nodes:view own")){
-					$this->Viewmodel->addRedirect(site_url('node/'.$node->safe_title), "Link"); 
-				}
-				if ($this->Permission->level("nodes:edit all, nodes:edit own")){
-					$this->Viewmodel->addRedirect(site_url('add/node_edit/'.$node->id), "Edit");
-				}
-				if ($this->Permission->level("nodes:delete all, nodes:delete own")){
-					$this->Viewmodel->addRedirect(site_url('delete/node/'.$node->id), "Delete");
-				} ?>
+				{view_button}
+				{edit_button}
+				{delete_button}
 			</td>
 		</tr>
-		<?php
-		} ?>
+		{/content}
 	</tbody>
 </table>
 <script src="http://code.jquery.com/jquery.js"></script>

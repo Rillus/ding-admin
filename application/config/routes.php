@@ -43,6 +43,7 @@ $route['404_override'] = '';
 $route['node/(:any)'] = 'node/name/$1';
 $route['view/(:any)'] = 'view/name/$1';
 $route['recipe/(:any)'] = 'recipe/id/$1';
+$route['upload/(:any)'] = 'upload/index/$1';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
