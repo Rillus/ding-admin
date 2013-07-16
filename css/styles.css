@@ -111,6 +111,9 @@ header.masthead p{
 .navbar-fixed-top .container {
 	width:100%;
 }
+.dropdown-menu {
+	left:inherit;
+}
 /* Homepage/Dashboard */
 #home .widget {
 	border:1px solid #ccc;
@@ -701,7 +704,9 @@ table.checklist tbody * {
 #progress p.failed {
 	background: #c00 none 0 0 no-repeat;
 }
-
+label {
+	clear:left;
+}
 /* responsive stuff */
 nav.navbar .brand {
 	display:none;

@@ -25,21 +25,27 @@ echo form_open('add/node_edit/'.$node->id, $attributes);
 			$type = $fields['type'][$i];
 			$safeName = $fields['safe_name'][$i];
 			$desc = $fields['description'][$i];
-			if (set_value($safeName) == ""){
+			
+			if (set_value($safeName, $content[$safeName]) == ""){
 				$val = $content[$safeName];
 			} else {
-				$val = $content[$safeName];
+				$val = set_value($safeName);
 			}
 			if ($type == 2){ ?>
 				<textarea type="text" class="input-block-level" name="<?php echo $safeName; ?>" data-type="long-text"><?php echo $val; ?></textarea>
 			<?php 
-			} else if ($type == 5){ ?>
+			} else if ($type == 5){ 
+				$options = explode("|", $desc = $fields['description'][$i]);
+			?>
 				<select class="input-block-level" name="<?php echo $safeName; ?>">
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
-					<option>5</option>
+					<?php foreach ($options as $option){ 
+						$thisOption = trim($option);
+						?>
+						<option value="<?php echo $thisOption; ?>"<?php 
+							if ($thisOption == $val){
+								echo 'selected ="selected"';
+							} ?>><?php echo $thisOption; ?></option>
+					<?php } ?>
 				</select>
 			<?php
 			} else if ($type == 8){ 
@@ -65,11 +71,12 @@ echo form_open('add/node_edit/'.$node->id, $attributes);
 				?>				
 				<div class="input-block-level">
 					<input type="file" class="span4" id="fileselect" name="userfile" form="upload mainform" />
-					<input type="hidden" class="span4" id="fileurl" name="<?php echo $safeName; ?>" value="<?php echo $val ?>" />
+					<input type="hidden" id="preLocation" value="<?php echo base_url().'uploads/'.$this->Seshmodel->getCurrentUserId().'/'; ?>" />
+					<input type="hidden" id="fileurl" name="<?php echo $safeName; ?>" value="<?php echo $val ?>" />
 					<div id="dropbox" class="span4">
 						<span id="droplabel">...or drag and drop image here to upload...</span>
 						<div id="progress"></div>
-						<img id="preview" alt="[ preview will display here ]" src="" />
+						<img id="preview" alt="[ preview will display here ]" src="<?php echo $val; ?>" />
 					</div>
 					<button type="submit" class="span4" id="submitbutton" form="upload">Upload Files</button>
 				</div>
@@ -117,8 +124,3 @@ echo form_open('add/node_edit/'.$node->id, $attributes);
 	<input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="1000000" />
 	<input type="hidden" id="id" name="id" value="<?php echo $contentType->id ?>" />
 </form>
-<script src="http://code.jquery.com/jquery.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/validate.js"></script>
-<?php if (isset($uploader) && ($uploader == true)){ ?>
-	<script type="text/javascript" src="<?php echo base_url(); ?>js/dragdrop.js"></script>
-<?php } ?>

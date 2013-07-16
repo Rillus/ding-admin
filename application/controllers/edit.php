@@ -1,5 +1,5 @@
 <?php
-class Add extends CI_Controller {
+class Edit extends CI_Controller {
 
 	public function __construct()
 	{
@@ -28,9 +28,19 @@ class Add extends CI_Controller {
 	{	
 		$this->Viewmodel->redirect();
 	}
-	function content_type() {
-		$this->Permission->level("content types:create", false);
-
+	function content_type($id = "") {
+		$minPermission = "content types:edit own, content types:edit all";
+		$this->Permission->level($minPermission, false);
+		
+		if ($id == ""){
+			$this->Viewmodel->displayMessage('No id set - try going <a href="'.site_url('node').'">here</a>');
+			return;
+		}
+		if (! $contentType = $this->Dbmodel->getContentTypeById($id)){
+			$this->Viewmodel->displayMessage('No matching content type found.');
+			return;
+		}
+		
 		$this->form_validation->set_rules('name', 'Name', 'trim|required');
 		$this->form_validation->set_rules('description', 'Description', 'trim|required');
 		$this->form_validation->set_rules('fieldType[]', 'Field Type', 'required|integer');
@@ -41,6 +51,7 @@ class Add extends CI_Controller {
 		
 		if ($this->form_validation->run() == FALSE) {
 			$data['fields'] = $this->db->get('field_type');
+			$data['contentType'] = $contentType;
 			$data['contentTypes'] = $this->db->get('content_type');
 			$data['redirect'] = $this->input->post('redirect');
 			
@@ -85,7 +96,8 @@ class Add extends CI_Controller {
 				'fields' => $fields
 			);
 
-			$this->db->insert('content_type', $data);
+			$this->db->where('id', $id);
+			$this->db->update('content_type', $data);
 			
 			$this->Viewmodel->redirect();
 		}
@@ -241,17 +253,15 @@ class Add extends CI_Controller {
 		for($i = 0; $i < count($fields['type']); $i++){
 			$name = $fields['name'][$i];
 			$safeName = $fields['safe_name'][$i];
-			$this->form_validation->set_rules($safeName, $name, 'trim');
+			$this->form_validation->set_rules($safeName, $name, 'trim|required');
 		}
 		if($this->input->post('fromForm')){
 			$data['redirect'] = $this->input->post('redirect');
-			$data['scripts'] = array ("validate", "dragdrop");
 			$this->Viewmodel->displayPage('add/edit_node', $data);
 			return;
 		}
 		if ($this->form_validation->run() == FALSE) {
 			$data['redirect'] = $this->input->post('redirect');
-			$data['scripts'] = array ("validate", "dragdrop");
 			$this->Viewmodel->displayPage('add/edit_node', $data);
 			return;
 		}

@@ -2,13 +2,14 @@
 function $id(id) {
 	return document.getElementById(id);
 }
-
 var dropbox = $id("dropbox"),
 	fileselect = $id("fileselect"),
 	submitbutton = $id("submitbutton"),
 	img = $id("preview"),
 	files = "",
 	count = "";
+	pre = $("#preLocation").val();
+
 
 // file select
 fileselect.addEventListener("change", FileSelectHandler, false);
@@ -22,7 +23,9 @@ if (xhr.upload) {
 	dropbox.addEventListener("dragleave", dragExit, false);
 	dropbox.addEventListener("dragover", dragOver, false);
 	dropbox.addEventListener("drop", drop, false);
-	img.style.display = "none";
+	if (img.src == ""){
+		img.style.display = "none";
+	}
 	dropbox.style.display = "block";
 } else {
 	dropbox.style.display = "none";
@@ -131,7 +134,7 @@ function uploadFiles(file){
 		xhr.open("POST", $id("upload").action, true);
 		xhr.setRequestHeader("X_FILENAME", file.name);
 		xhr.send(file);
-		$("#fileurl").val(file.name);
+		$("#fileurl").val(pre+file.name);
 	} else {
 		$id("droplabel").innerHTML = "Image too large, max file size is "+$id("MAX_FILE_SIZE").value+" please try another file.";
 	}

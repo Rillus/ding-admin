@@ -11,20 +11,22 @@ class Viewmodel extends CI_Model {
 	function displayMessage($body, $head = ""){
 		$message['header'] = $head;
 		$message['message'] = $body;
-		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')) {
+		if ($this->isAJAX()) {
 			$this->load->view("templates/message", $message);
 		} else {
-			$this->load->view('templates/header');
+			$header['contentTypes'] = $this->db->get('content_type');
+			$this->load->view('templates/header', $header);
 			$this->load->view('templates/message', $message);
 			$this->load->view('templates/footer');
 		}
 	}
 	function displayPage($view, $data = "", $parser = false){
 		if ($parser == false){
-			if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')) {
+			if ($this->isAJAX()) {
 				$this->load->view($view, $data);
 			} else {
-				$this->load->view('templates/header');
+				$header['contentTypes'] = $this->db->get('content_type');
+				$this->load->view('templates/header', $header);
 				$this->load->view($view, $data);
 				$this->load->view('templates/footer', $data);
 			}
@@ -58,6 +60,13 @@ class Viewmodel extends CI_Model {
 		$form .= '</form>';
 		
 		return $form;
+	}
+	function isAJAX(){
+		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')){
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
 ?>

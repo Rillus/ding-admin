@@ -1,33 +1,15 @@
 <?php
-if ($this->uri->segment(1) == "edit"){
-	$name = $contentType->name;
-	$description = $contentType->description;
-	$fieldArray = unserialize($contentType->fields);
-	$fieldType = $fieldArray['type'];
-	$fieldName = $fieldArray['name'];
-	$fieldDescription = $fieldArray['description'];
-	$fieldRequired = $fieldArray['required'];
-	$thisFieldType = set_value('fieldType[]', $fieldArray['type']);
-	
-	$fieldCount = count($fieldArray['name']);
-	
-	$attributes = array('class' => '');
-	echo form_open('edit/content_type/'.$this->uri->segment(3), $attributes);
-	echo "<h2>Edit a content type</h2>";	
-} else {
-	$name = $description = $fieldtype = $fieldType[] = $fieldName[] = $fieldDescription[] = $fieldRequired[] = "";
-	$thisFieldType = set_value('fieldType[]');
-	$fieldCount = set_value('fieldCount', 1);
+$name = $description = $fieldtype = $fieldType[] = $fieldName[] = $fieldDescription[] = "";
+$fieldCount = set_value('fieldCount', 1);
 
-	$attributes = array('class' => '');
-	echo form_open('add/content_type', $attributes);
-	echo "<h2>Add a content type</h2>";	
-}
+$attributes = array('class' => '');
+echo form_open('add/edit_content_type', $attributes);
+echo "<h2>Edit a content type</h2>";
 ?>
 	<div class="controls controls-row">
-		<input type="text" class="input-block-level" placeholder="Name" name="name" value="<?php echo set_value('name', $name); ?>">
+		<input type="text" class="input-block-level" placeholder="Name" name="name" value="<?php echo set_value('name', $name, $name); ?>">
 		<?php echo form_error('name'); ?>
-		<input type="text" class="input-block-level" placeholder="Description" name="description" value="<?php echo set_value('description', $description); ?>">
+		<input type="text" class="input-block-level" placeholder="Description" name="description" value="<?php echo set_value('description', $description, $description); ?>">
 		<?php echo form_error('description'); ?>
 	</div>
 	<h3>Fields</h3>	
@@ -48,27 +30,30 @@ if ($this->uri->segment(1) == "edit"){
 	</fieldset>
 	<fieldset>
 	<?php 
-	for($i = 0; $i < $fieldCount; $i++){ ?>
+	for($i = 1; $i <= $fieldCount; $i++){ ?>
+		<?php 
+		//echo "<p>".set_value('fieldType[]')." is fieldType length</p>"; ?>
 		<div class="controls controls-row new-field">
 			<select name="fieldType[]" class="span3">
 				<option value="">- Field Type -</option>
 				<?php 
+				$thisFieldType = set_value('fieldType[]');
 				foreach($fields->result() as $field){ 
 					$fieldTypeDefault = false;
 				?>
 					<option value="<?php echo $field->id; ?>" <?php 
-					if ($field->id == $thisFieldType[$i]){
+					if ($field->id == $thisFieldType){
 						echo 'selected ="selected"';
 					} ?>
 					><?php echo $field->name; ?></option>
 				<?php } ?>
 			</select>
 			
-			<input type="text" class="span3" placeholder="Field Name" name="fieldName[]" value="<?php echo set_value('fieldName[]', $fieldName[$i]); ?>">
+			<input type="text" class="span3" placeholder="Field Name" name="fieldName[]" value="<?php echo set_value('fieldName[]', $fieldName[0]); ?>">
 
-			<input type="text" class="span3" placeholder="Field Description" name="fieldDescription[]" value="<?php echo set_value('fieldDescription[]', $fieldDescription[$i]); ?>">
+			<input type="text" class="span3" placeholder="Field Description" name="fieldDescription[]" value="<?php echo set_value('fieldDescription[]', $fieldDescription[0]); ?>">
 
-			<input type="text" class="span2" name="fieldRequired[]" placeholder="Required?" value="<?php echo set_value('fieldRequired[]', $fieldRequired[$i]); ?>">
+			<input type="text" class="span2" name="fieldRequired[]" placeholder="Required?" value="<?php echo set_value('fieldRequired[]'); ?>">
 
 			<span class="icon-remove deleter"></span>
 					
@@ -104,9 +89,9 @@ if ($this->uri->segment(1) == "edit"){
 				<?php } ?>
 			</select>
 			
-			<input type="text" class="span3" placeholder="Field Name" name="fieldName[]" value="<?php echo set_value('fieldName[]'); ?>">
+			<input type="text" class="span3" placeholder="Field Name" name="fieldName[]" value="<?php echo set_value('fieldName[]', $fieldName[0], $fieldName[0]); ?>">
 
-			<input type="text" class="span3" placeholder="Field Description" name="fieldDescription[]" value="<?php echo set_value('fieldDescription[]'); ?>">
+			<input type="text" class="span3" placeholder="Field Description" name="fieldDescription[]" value="<?php echo set_value('fieldDescription[]', $fieldDescription[0], $fieldDescription[0]); ?>">
 
 			<input type="text" class="span2" name="fieldRequired[]" placeholder="Required?" value="<?php echo set_value('fieldRequired[]'); ?>">
 
@@ -134,6 +119,6 @@ if ($this->uri->segment(1) == "edit"){
 		</select>
     </script>
 	<script type="template" id="description-field">
-		<input type="text" class="span3" placeholder="Field Description" name="fieldDescription[]" value="<?php echo set_value('fieldDescription[]', $fieldDescription[0]); ?>">
+		<input type="text" class="span3" placeholder="Field Description" name="fieldDescription[]" value="<?php echo set_value('fieldDescription[]', $fieldDescription[0], $fieldDescription[0]); ?>">
     </script>
 </form>

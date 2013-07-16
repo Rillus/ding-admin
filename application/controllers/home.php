@@ -22,7 +22,8 @@ class Home extends CI_Controller {
 	function index()
 	{	
 		if ($this->session->userdata('logged_in') == 'yes'){
-			$this->load->view('templates/header');
+			$header['contentTypes'] = $this->db->get('content_type');
+			$this->load->view('templates/header', $header);
 			$this->load->view('recipes/index');
 			$this->load->view('templates/dashboard');
 			$this->load->view('templates/footer');

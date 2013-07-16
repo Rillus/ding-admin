@@ -5,7 +5,7 @@ var baseUrl = window.baseUrl,
 	viewVal,
 	thisTemplate;
 $(document).ready(function(){
-
+	
 	/* ------- Generic validation stuff ------ */
 	var jVal = {
 		'toggleElement' : function() {

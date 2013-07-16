@@ -43,13 +43,18 @@ echo form_open('add/node/'.$contentType->id, $attributes);
 			if ($type == 2){ ?>
 				<textarea type="text" class="input-block-level" name="<?php echo $safeName; ?>" data-type="long-text"><?php echo set_value($safeName); ?></textarea>
 			<?php 
-			} else if ($type == 5){ ?>
+			} else if ($type == 5){ 
+				$options = explode("|", $desc = $fields['description'][$i]);
+			?>
 				<select class="input-block-level" name="<?php echo $safeName; ?>">
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
-					<option>5</option>
+					<?php foreach ($options as $option){ 
+						$thisOption = trim($option);
+						?>
+						<option value="<?php echo $thisOption; ?>"<?php 
+							if ($thisOption == set_value($safeName)){
+								echo 'selected ="selected"';
+							} ?>><?php echo $thisOption; ?></option>
+					<?php } ?>
 				</select>
 			<?php
 			} else if ($type == 8){ 
@@ -75,6 +80,7 @@ echo form_open('add/node/'.$contentType->id, $attributes);
 				?>				
 				<div class="input-block-level">
 					<input type="file" class="span4" id="fileselect" name="userfile" form="upload mainform" />
+					<input type="hidden" id="preLocation" value="<?php echo base_url().'uploads/'.$this->Seshmodel->getCurrentUserId().'/'; ?>" />
 					<input type="hidden" class="span4" id="fileurl" name="<?php echo $safeName; ?>" />
 					<div id="dropbox" class="span4">
 						<span id="droplabel">...or drag and drop image here to upload...</span>
