@@ -5,16 +5,15 @@ if ($this->uri->segment(2) == "edit"){
 	$edit = true;
 	$forename = $user->forename;
 	$surname = $user->surname;
-	$username = $user->username;
+	$username = $username = $user->username;
 	$password = $confirm = $user->password;
-	$job_title = $user->job_title;
-	$phone = $user->phone;
+	$email = $user->email;
 	$permission = $user->permissions;
 	
 	echo form_open('users/edit/'.$user->id, $attributes);
 	echo "<h2>Edit $forename $surname</h2>";
 } else {
-	$forename = $surname = $username = $password = $confirm = $job_title = $phone = $permission = $emailThem = "";
+	$forename = $surname = $username = $email = $password = $confirm = $job_title = $phone = $permission = $emailThem = "";
 	if ($this->uri->segment(1) == "users"){
 		echo form_open('users/add', $attributes);
 	} else {
@@ -33,12 +32,16 @@ if ($this->uri->segment(2) == "edit"){
 		<?php 
 		if ($edit){ 
 			echo "<p>$username</p>"; ?>
-			<input type="hidden" class="input-block-level" placeholder="Email" name="username" value="<?php echo set_value('username', $username); ?>">
+			<input type="hidden" class="input-block-level" placeholder="Username" name="username" value="<?php echo set_value('username', $username); ?>">
 		<?php
 		} else { ?>
-			<input type="text" class="input-block-level" placeholder="Email" name="username" value="<?php echo set_value('username', $username); ?>">
+			<input type="text" class="input-block-level" placeholder="Username" name="username" value="<?php echo set_value('username', $username); ?>">
 		<?php } ?>
 		<?php echo form_error('username'); ?>
+		
+		<input type="text" class="input-block-level" placeholder="Email" name="email" value="<?php echo set_value('email', $email); ?>">
+		<?php echo form_error('email'); ?>
+
 		<?php if ($this->uri->segment(2) != "edit"){ ?>
 			<label class="checkbox">
 				Email new user? <?php echo form_checkbox('emailThem', 'accept'); //set_checkbox('emailThem', "1", $emailThem); ?>
@@ -49,12 +52,6 @@ if ($this->uri->segment(2) == "edit"){
 		
 		<input type="password" class="input-block-level" placeholder="Confirm password" name="confirm" value="<?php echo set_value('confirm', $confirm); ?>">
 		<?php echo form_error('confirm'); ?>
-		
-		<input type="text" class="input-block-level" placeholder="Job title" name="job_title" value="<?php echo set_value('job_title', $job_title); ?>">
-		<?php echo form_error('job_title'); ?>
-		
-		<input type="text" class="input-block-level" placeholder="Phone Number" name="phone" value="<?php echo set_value('phone', $phone); ?>">
-		<?php echo form_error('phone'); ?>
 		
 		<?php 
 		if((($edit == true)&&($this->Permission->level("permissions:edit own, permissions:edit all"))) xor ($edit != true)){ ?>

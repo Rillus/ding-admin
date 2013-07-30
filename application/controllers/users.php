@@ -51,12 +51,11 @@ class Users extends CI_Controller {
 						
 		$this->form_validation->set_rules('forename', 'forename', 'trim|required');
 		$this->form_validation->set_rules('surname', 'surname', 'trim|required');
-		$this->form_validation->set_rules('username', 'email', 'required|valid_email|callback_preregistered_check');
+		$this->form_validation->set_rules('username', 'username', 'required|callback_preregistered_username');
+		$this->form_validation->set_rules('email', 'email', 'required|valid_email|callback_preregistered_email');
 		$this->form_validation->set_rules('emailThem', 'email new user', '');
 		$this->form_validation->set_rules('password', 'password', 'required');
 		$this->form_validation->set_rules('confirm', 'confirm password', 'required|matches[password]');
-		$this->form_validation->set_rules('job_title', 'job title', 'trim');
-		$this->form_validation->set_rules('phone', 'telephone number', 'trim');
 		$this->form_validation->set_rules('permissions', 'select permissions', 'required');
 		
 		if ($this->form_validation->run() == FALSE) {
@@ -67,18 +66,16 @@ class Users extends CI_Controller {
 			$forename = $_POST['forename'];
 			$surname = $_POST['surname'];
 			$username = $_POST['username'];
+			$email = $_POST['email'];
 			$password = $_POST['password'];
-			$job_title = $_POST['job_title'];
-			$phone = $_POST['phone'];
 			$permissions = $_POST['permissions'];
 						
 			$data = array (
 				'forename' => $forename,
 				'surname' => $surname,
+				'email' => $email,
 				'username' => $username,
 				'password' => $password,
-				'job_title' => $job_title,
-				'phone' => $phone,
 				'permissions' => $permissions
 			);
 
@@ -105,11 +102,10 @@ class Users extends CI_Controller {
 				
 		$this->form_validation->set_rules('forename', 'forename', 'trim|required');
 		$this->form_validation->set_rules('surname', 'surname', 'trim|required');
-		$this->form_validation->set_rules('username', 'email', 'required|valid_email');
+		$this->form_validation->set_rules('username', 'username', 'required|');
+		$this->form_validation->set_rules('email', 'email', 'required|valid_email');
 		$this->form_validation->set_rules('password', 'password', 'required');
 		$this->form_validation->set_rules('confirm', 'confirm password', 'required|matches[password]');
-		$this->form_validation->set_rules('job_title', 'job title', 'trim');
-		$this->form_validation->set_rules('phone', 'telephone number', 'trim');
 		$this->form_validation->set_rules('permissions', 'select permissions', 'required');
 		
 		if ($this->form_validation->run() == FALSE) {
@@ -121,18 +117,16 @@ class Users extends CI_Controller {
 			$forename = $_POST['forename'];
 			$surname = $_POST['surname'];
 			$username = $_POST['username'];
+			$email = $_POST['email'];
 			$password = $_POST['password'];
-			$job_title = $_POST['job_title'];
-			$phone = $_POST['phone'];
 			$permissions = $_POST['permissions'];
 						
 			$data = array (
 				'forename' => $forename,
 				'surname' => $surname,
 				'username' => $username,
+				'email' => $email,
 				'password' => $password,
-				'job_title' => $job_title,
-				'phone' => $phone,
 				'permissions' => $permissions
 			);
 			
@@ -142,13 +136,25 @@ class Users extends CI_Controller {
 			redirect('users');
 		}
 	}
-	function preregistered_check($str)
+	function preregistered_email($str)
+	{
+		$this->db->where('email', $str);
+		$existing_email = $this->db->get('users');
+		
+		if ($existing_email->num_rows() > 0 ){
+			$this->form_validation->set_message('preregistered_email', 'That email address has already been registered. Do you need a password reminder?');
+			return FALSE;
+		} else {
+			return TRUE;
+		}
+	}
+	function preregistered_username($str)
 	{
 		$this->db->where('username', $str);
 		$existing_email = $this->db->get('users');
 		
 		if ($existing_email->num_rows() > 0 ){
-			$this->form_validation->set_message('preregistered_check', 'That email address has already been registered. Do you need a password reminder?');
+			$this->form_validation->set_message('preregistered_username', 'That username has already been registered. Please pick another.');
 			return FALSE;
 		} else {
 			return TRUE;

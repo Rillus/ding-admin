@@ -16,11 +16,11 @@ class Login extends CI_Controller {
 	}
 	function login_action()
 	{		
-		$username = $this->input->post('email');
+		$email = $this->input->post('email');
 		$password = $this->input->post('password');
 		$redirect = $this->input->post('redirect');
 		
-		$this->db->where ('username', $username);
+		$this->db->where ('email', $email);
 		$this->db->where ('password', $password);
 		$retrieved_users = $this->db->get('users', 1);
 		$retrieved_user = $retrieved_users->row();
@@ -29,7 +29,8 @@ class Login extends CI_Controller {
 		{
 			$newdata = array(
 				'id'  => $retrieved_user->id,
-				'username'  => $username,
+				'username'  => $retrieved_user->username,
+				'email'  => $email,
 				'logged_in' => 'yes',
 				'permissions' => $retrieved_user->permissions
 			);
@@ -49,7 +50,7 @@ class Login extends CI_Controller {
 	}
 	function logout()
 	{
-		$array_items = array('id' => '', 'username' => '', 'logged_in' => '', 'permissions' => '');
+		$array_items = array('id' => '', 'username' => '', 'email' => '', 'logged_in' => '', 'permissions' => '');
 		$this->session->unset_userdata($array_items);
 		redirect('');
 	}

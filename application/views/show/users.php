@@ -13,9 +13,8 @@
 		<tr>
 			<th>Forename</th>
 			<th>Surname</th>
+			<th>Username</th>
 			<th>Email</th>
-			<th>Phone</th>
-			<th>Job Title</th>
 			<th>Permissions</th>
 			
 			<th class="lastCol">Actions</th>
@@ -28,8 +27,7 @@
 				<td><?php echo $user->forename; ?></td>
 				<td><?php echo $user->surname; ?></td>
 				<td><?php echo $user->username; ?></td>
-				<td><?php echo $user->phone; ?></td>
-				<td><?php echo $user->job_title; ?></td>
+				<td><?php echo $user->email; ?></td>
 				<td><?php echo $user->permissions; ?></td>
 				
 				<td class="lastCol"><a href="<?php echo site_url('users/user/'.$user->id); ?>">link</a> | <a href="<?php echo site_url('users/edit/'.$user->id); ?>">Edit</a></td>

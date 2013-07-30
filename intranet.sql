@@ -1,22 +1,16 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.9
+-- version 3.2.4
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 02, 2013 at 11:13 AM
--- Server version: 5.5.8
--- PHP Version: 5.3.5
+-- Generation Time: Jul 29, 2013 at 04:06 PM
+-- Server version: 5.1.44
+-- PHP Version: 5.3.1
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
 --
--- Database: `intranet`
+-- Database: `ding-admin`
 --
 
 -- --------------------------------------------------------
@@ -35,6 +29,11 @@ CREATE TABLE IF NOT EXISTS `content_type` (
   UNIQUE KEY `safe_name` (`safe_name`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
 
+--
+-- Dumping data for table `content_type`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -47,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `field_type` (
   `description` varchar(1600) NOT NULL,
   `length` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `field_type`
@@ -84,6 +83,11 @@ CREATE TABLE IF NOT EXISTS `node` (
   UNIQUE KEY `safe_title` (`safe_title`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
 
+--
+-- Dumping data for table `node`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -104,9 +108,7 @@ CREATE TABLE IF NOT EXISTS `permissions` (
 INSERT INTO `permissions` (`id`, `name`, `permissions`) VALUES
 (1, 'Admin', 'a:5:{i:0;a:7:{i:0;s:1:"1";i:1;s:1:"1";i:2;s:1:"1";i:3;s:1:"1";i:4;s:1:"1";i:5;s:1:"1";i:6;s:1:"1";}i:1;a:7:{i:0;s:1:"1";i:1;s:1:"1";i:2;s:1:"1";i:3;s:1:"1";i:4;s:1:"1";i:5;s:1:"1";i:6;s:1:"1";}i:2;a:7:{i:0;s:1:"1";i:1;s:1:"1";i:2;s:1:"1";i:3;s:1:"1";i:4;s:1:"1";i:5;s:1:"1";i:6;s:1:"1";}i:3;a:7:{i:0;s:1:"1";i:1;s:1:"1";i:2;s:1:"1";i:3;s:1:"1";i:4;s:1:"1";i:5;s:1:"1";i:6;s:1:"1";}i:4;a:7:{i:0;s:1:"1";i:1;s:1:"1";i:2;s:1:"1";i:3;s:1:"1";i:4;s:1:"1";i:5;s:1:"1";i:6;s:1:"1";}}');
 
-
 -- --------------------------------------------------------
-
 
 --
 -- Table structure for table `users`
@@ -115,14 +117,18 @@ INSERT INTO `permissions` (`id`, `name`, `permissions`) VALUES
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(256) NOT NULL,
+  `email` varchar(256) NOT NULL,
   `password` varchar(256) NOT NULL,
   `forename` varchar(256) NOT NULL,
   `surname` varchar(256) NOT NULL,
-  `job_title` varchar(256) DEFAULT NULL,
   `permissions` int(11) NOT NULL,
-  `phone` varchar(50) DEFAULT NULL,
+  `status` varchar(256) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `users`
+--
 
 
 -- --------------------------------------------------------
@@ -144,6 +150,10 @@ CREATE TABLE IF NOT EXISTS `views` (
   `created_by` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+
+--
+-- Dumping data for table `views`
+--
 
 
 -- --------------------------------------------------------
