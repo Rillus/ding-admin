@@ -115,14 +115,14 @@ class View extends CI_Controller {
 				'nodes' => $nodes,
 			);
 			$this->Viewmodel->displayPage('show/view/checklist', $data);
-		} else if ($view->view_type == 4){ //then it's a Timeline
+		} else if ($view->view_type == 4){ //then it's a Grid
 			$data = array(
 				'view' => $view,
 				'width' => (100/count($viewFields)),
 				'contentType' => $contentType,
 				'nodes' => $nodes,
 			);
-			$this->Viewmodel->displayPage('show/view/timeline', $data);
+			$this->Viewmodel->displayPage('show/view/grid', $data);
 		}
 	}
 }

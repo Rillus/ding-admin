@@ -16,7 +16,7 @@ if ($this->uri->segment(1) == "edit"){
 	echo "<h2>Edit a content type</h2>";	
 } else {
 	$name = $description = $fieldtype = $fieldType[] = $fieldName[] = $fieldDescription[] = $fieldRequired[] = "";
-	$thisFieldType = set_value('fieldType[]');
+	//$thisFieldType = set_value('fieldType[]');
 	$fieldCount = set_value('fieldCount', 1);
 
 	$attributes = array('class' => '');
@@ -53,17 +53,22 @@ if ($this->uri->segment(1) == "edit"){
 			<select name="fieldType[]" class="span3">
 				<option value="">- Field Type -</option>
 				<?php 
+				$thisFieldType = set_value('fieldType[]');
 				foreach($fields->result() as $field){ 
 					$fieldTypeDefault = false;
 				?>
 					<option value="<?php echo $field->id; ?>" <?php 
-					if ($field->id == $thisFieldType[$i]){
-						echo 'selected ="selected"';
-					} ?>
+					//if (isset($thisFieldType[$i])) {
+							if ($field->id == $thisFieldType){
+							echo 'selected ="selected"';
+						} 
+					//} ?>
 					><?php echo $field->name; ?></option>
 				<?php } ?>
 			</select>
-			
+			<?php if (! isset($fieldName[$i])) { $fieldName[$i] = ""; } ?>
+			<?php if (! isset($fieldDescription[$i])){ $fieldDescription[$i] = ""; } ?>
+			<?php if (! isset($fieldRequired[$i])){ $fieldRequired[$i] = ""; } ?>
 			<input type="text" class="span3" placeholder="Field Name" name="fieldName[]" value="<?php echo set_value('fieldName[]', $fieldName[$i]); ?>">
 
 			<input type="text" class="span3" placeholder="Field Description" name="fieldDescription[]" value="<?php echo set_value('fieldDescription[]', $fieldDescription[$i]); ?>">
@@ -92,7 +97,7 @@ if ($this->uri->segment(1) == "edit"){
 			<select name="fieldType[]" class="span3">
 				<option value="">- Field Type -</option>
 				<?php 
-				$thisFieldType = set_value('fieldType[]');
+				$thisFieldType = "";//set_value('fieldType[]');
 				foreach($fields->result() as $field){ 
 					$fieldTypeDefault = false;
 				?>
