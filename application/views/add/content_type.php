@@ -16,7 +16,6 @@ if ($this->uri->segment(1) == "edit"){
 	echo "<h2>Edit a content type</h2>";	
 } else {
 	$name = $description = $fieldtype = $fieldType[] = $fieldName[] = $fieldDescription[] = $fieldRequired[] = "";
-	//$thisFieldType = set_value('fieldType[]');
 	$fieldCount = set_value('fieldCount', 1);
 
 	$attributes = array('class' => '');
